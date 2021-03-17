@@ -21,8 +21,22 @@ With Ant and Gradle every time you enter a project there is its own custom set o
 # Step 1 - Getting Acquainted
 
 * Read about dependencies and transitive dependencies
+  ```
+  POM - Project Object Model
+  Dependencies: dependency is another archive—JAR, ZIP, and so on—which your current project needs in order to compile, build, test, and/or to run. The dependencies are gathered in the pom.xml file, inside of a <dependencies> tag.
+  Transitive dependencies: a dependency of a dependency
+  ```
 * Learn what Super POM is and what Effective POM is
+  ```
+  Super POM: All Maven project POMs extend the Super POM, which defines a set of defaults shared by all projects (p154)
+  Effective POM: Maven starts with the Super POM and then overrides default configuration with one or more parent POMs. Then it overrides the resulting config- uration with the current project’s POM. You end up with an effective POM that is a mixture of various POMs. (p155)
+  > Get effective POM: $ mvn help:effective-pom 
+  ```
 * Read about `packaging` and create a project with one module that has `packaging=war`
+  ```
+  Packaging specifies the type of artifact the project produces. Maven offers many default packaging types that include a jar, war, ear, pom, rar, ejb, and maven-plugin 
+  ```
+  [Source](https://www.baeldung.com/maven-packaging-types)
 * Add a dependency `org.testng:testng:6.10`
 * Add any Java class to your `src/main/java` and an XML file to your `src/main/resources`. And do the same in 
 `src/test/xxx` dirs.
@@ -33,12 +47,45 @@ With Ant and Gradle every time you enter a project there is its own custom set o
 
 * Run `mvn install` successfully
 * List all the dependencies that your project has (including transitives) with one command
+  ```
+  mvn dependency:tree | pbcopy
+  ```
+  // pbcopy pipeline for getting the result to clipboard
 * Explore Effective POM and find all the default sections that were applied to your project. Even those that you didn't
 explicitly write.
+  ```
+  mvn help:effective-pom | pbcopy
+  ```
+  Default section:
+  ```
+  <repositories>
+  <pluginRepositories>
+  <build>
+    <sourceDirectory>.../java-course/src/main/java</sourceDirectory>
+    <scriptSourceDirectory>.../java-course/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>.../java-course/src/test/java</testSourceDirectory>
+    <outputDirectory>.../java-course/target/classes</outputDirectory>
+    <testOutputDirectory>.../java-course/target/test-classes</testOutputDirectory>
+    <resources>
+      <resource>
+        <directory>.../java-course/src/main/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>.../java-course/src/test/resources</directory>
+      </testResource>
+    </testResources>
+    <directory>.../java-course/target</directory>
+    <finalName>java-training-1-SNAPSHOT</finalName>
+  </build>
+  ```
 
 *Tip*: dependency tree and Effective POM are the most important diagnostic tools that you need. Every time there is
 an issue these 2 tools are there to help. Your IDE probably has means to generate both of them - try to find the 
 shortcuts, you'll need this often.
+
+![How to check in intellij](./images/intellij-dependency-tree-effective-pom.png)
 
 # Step 2 - Lifecycle, phases, plugins
 
