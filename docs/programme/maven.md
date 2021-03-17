@@ -50,7 +50,7 @@ With Ant and Gradle every time you enter a project there is its own custom set o
   ```
   mvn dependency:tree | pbcopy
   ```
-  // pbcopy pipeline for getting the result to clipboard
+  _pbcopy pipeline for getting the result to clipboard_
 * Explore Effective POM and find all the default sections that were applied to your project. Even those that you didn't
 explicitly write.
   ```
