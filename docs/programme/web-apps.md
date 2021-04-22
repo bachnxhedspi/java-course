@@ -35,6 +35,8 @@ Application Servers support some of the features of the HTTP Servers like routin
 resources but in practice we mostly rely on the HTTP Servers for that as it's their niche. They are more flexible and 
 performant for this kind of job.
 
+[Reference here for more detail](https://www.educative.io/edpresso/web-server-vs-application-server)
+
 # Step 1 - Servlets API core
 
 * Learn what a Servlet is and write a Hello World example
